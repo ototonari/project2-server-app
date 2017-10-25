@@ -6,10 +6,12 @@ url = 'https://wiki.debian.org/DebianReleases'
 html = open(url).read
 doc = Nokogiri::HTML(html)
 
-# 下の行をコメントアウトすると、pryが起動する
-# binding.pry
+# 表のタイトル
+puts doc.xpath("//h2[@id='Production_Releases']").text
 
-# 例：h2要素のみを抜き出す
-doc.css('h2').each do |node|
-  puts node.text
+# 要素一覧（タブ揃え）
+doc.xpath("//tr").each do |node|
+  break if /(EOL)/ =~ node.text
+  puts node.text.gsub(/(\ )/,"").gsub(/(\n)/, "\t")
 end
+
