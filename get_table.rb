@@ -12,6 +12,6 @@ puts doc.xpath("//h2[@id='Production_Releases']").text
 # 要素一覧（タブ揃え）
 doc.xpath("//tr").each do |node|
   break if /(EOL)/ =~ node.text
-  puts node.text.gsub(/(\ )/,"").gsub(/(\n)/, "\t")
+  puts node.text.gsub(/(\ )/,"").gsub(/(\n)/, "\t\t")
 end
 
